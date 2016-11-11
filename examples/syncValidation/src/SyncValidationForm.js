@@ -23,14 +23,6 @@ const validate = values => {
   return errors
 }
 
-const warn = values => {
-  const warnings = {}
-  if (values.age < 19) {
-    warnings.age = 'Hmm, you seem a bit young...'
-  }
-  return warnings
-}
-
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
     <label>{label}</label>
@@ -42,6 +34,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 )
 
 const SyncValidationForm = (props) => {
+
   const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
@@ -58,6 +51,5 @@ const SyncValidationForm = (props) => {
 
 export default reduxForm({
   form: 'syncValidation',  // a unique identifier for this form
-  validate,                // <--- validation function given to redux-form
-  warn                     // <--- warning function given to redux-form
+  validate                // <--- validation function given to redux-form                    
 })(SyncValidationForm)
